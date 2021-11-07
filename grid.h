@@ -3,10 +3,6 @@
 
 #include <random>
 #include <chrono>
-#include <iostream>
-#include <assert.h>
-
-#include "screen.h"
 
 class Grid {
 	
@@ -14,8 +10,6 @@ private:
 	int width;
 	int height;
 	int size;
-	// how big each cell is, in screen units
-	int cellSize;
 	
 	// perhaps do something like:
 	// empty = 0
@@ -26,7 +20,6 @@ private:
 	// whether there is food in this cell
 	std::vector<bool> foodGrid;
 	
-	// computed using grid width/height and screen sizefor compatability
 	// const int GRID_SIZE = std::min(screen::SCREEN_WIDTH / GRID_WIDTH, screen::SCREEN_HEIGHT / GRID_HEIGHT); 
 	
 	// random generator
@@ -40,19 +33,18 @@ public:
 		width = w;
 		height = h;
 		size = w*h;
-		cellSize = std::min(screen::SCREEN_WIDTH / width, screen::SCREEN_HEIGHT / height); 
 		
 		for (int i = 0; i < size; i++) {
 			snakeGrid.push_back(0);
 			foodGrid.push_back(false);
 		}
 		
-		assert (snakeGrid.size() == size);
-		assert (foodGrid.size() == size);
+		// assert (snakeGrid.size() == size);
+		// assert (foodGrid.size() == size);
 		
 		generator.seed(std::chrono::system_clock::now().time_since_epoch().count());
 		
-		std::cout << "made grid: " << w << ", " << h << std::endl;
+		// std::cout << "made grid: " << w << ", " << h << std::endl;
 	}
 	
 	// getters
@@ -62,23 +54,6 @@ public:
 	
 	int getHeight() {
 		return height;
-	}	
-	
-	// for now, everything is in the top left, but these should be updated for centering later
-	int screenToGridX(int x) {
-		return x / width;
-	}
-
-	int screenToGridY(int y) {
-		return y / height;
-	}
-
-	int gridToScreenX(int x) {
-		return x * cellSize;
-	}
-
-	int gridToScreenY(int y) {
-		return y * cellSize;
 	}
 	
 	int wrap(int n, int mod) {

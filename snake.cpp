@@ -3,7 +3,6 @@
 #include <algorithm>
 
 #include "snake.h"
-#include "screen.h"
 #include "grid.h"
 #include "direction.h"
 
