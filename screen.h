@@ -60,6 +60,7 @@ public:
 					SDL_SetRenderDrawColor( gRenderer, 0, 0, 0, 0xFF );
 					SDL_RenderClear( gRenderer );
 					
+					// draw loading symbols
 					SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 					SDL_Rect one = {width / 2 - 20, height / 2, 10, 10};
 					SDL_Rect two = {width / 2, height / 2, 10, 10};
