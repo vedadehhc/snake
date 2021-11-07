@@ -281,6 +281,13 @@ void drawGrid(int spacing) {
 }
 
 
+enum Direction {
+	EAST,
+	SOUTH,
+	NORTH,
+	WEST,
+	TOTAL
+};
 
 
 int curX = SCREEN_WIDTH / 2;
