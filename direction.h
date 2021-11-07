@@ -1,6 +1,8 @@
 #ifndef DIRECTION_H
 #define DIRECTION_H
 
+#include <string>
+
 namespace Direction {
 	enum Direction {
 		NONE = 0,
@@ -10,6 +12,17 @@ namespace Direction {
 		WEST = 4,
 		TOTAL = 5,
 	};
+	
+	static const std::string DirectionNames[] = {
+		"NONE",
+		"EAST",
+		"SOUTH",
+		"NORTH",
+		"WEST"
+	};
+	
+	// statically check that the size of ColorNames fits the number of Colors
+	static_assert(sizeof(DirectionNames)/sizeof(std::string) == Direction::TOTAL, "sizes dont match");
 
 	Direction oppositeDirection(Direction dir) {
 		return static_cast<Direction>(Direction::TOTAL - dir);
