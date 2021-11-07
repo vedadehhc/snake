@@ -41,7 +41,6 @@ public:
 	*/
 	void render(Screen& s);
 	
-	
 	/**
 	adds a turn to this snake's turn queue
 	*/
@@ -61,8 +60,21 @@ public:
 	*/
 	void move();
 	
+	/**
+	tries to eat at the current head of the snake. if eating is successful 
+	(i.e. there was food at the head) return true.
+	*/
 	bool eat();
+	
+	/**
+	kills this snake.
+	*/
 	void die();
+	
+	/**
+	checks whether this snake's head has collided with any other snakes or 
+	itself.
+	*/
 	bool isCollided();
 	
 	static void checkCollisions() {
