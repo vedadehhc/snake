@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "screen.h"
-#include "grid.h"
+#include "Screen.h"
+#include "Grid.h"
 
 class Game {
 private:

@@ -7,9 +7,9 @@
 #include <deque>
 #include <algorithm>
 
-#include "direction.h"
-#include "grid.h"
-#include "screen.h"
+#include "Direction.h"
+#include "Grid.h"
+#include "Screen.h"
 
 class Snake {
 	

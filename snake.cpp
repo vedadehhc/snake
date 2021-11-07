@@ -2,10 +2,10 @@
 #include <utility>
 #include <algorithm>
 
-#include "snake.h"
-#include "grid.h"
-#include "direction.h"
-#include "screen.h"
+#include "Snake.h"
+#include "Grid.h"
+#include "Direction.h"
+#include "Screen.h"
 
 std::vector<Snake*> Snake::snakes;
 std::vector<Snake*> Snake::toDie;

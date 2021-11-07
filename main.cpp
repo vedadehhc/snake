@@ -9,7 +9,7 @@
 #include <queue>
 
 // TESTING:
-#include "screen.h"
+#include "Screen.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1280;
