@@ -8,6 +8,7 @@
 #include <algorithm>
 
 #include "direction.h"
+#include "grid.h"
 
 class Snake {
 	
@@ -30,8 +31,9 @@ private:
 	
 public:
 	const static int PLAYER_SIZE = 40;
-	const static int PLAYER_SPEED = PLAYER_SIZE;
-	Snake(int x, int y);
+	const static int PLAYER_SPEED = 1;
+	Grid* grid;
+	Snake(Grid* g, int x, int y);
 	
 	/**
 	adds a turn to this snake's turn queue
@@ -47,7 +49,7 @@ public:
 	
 	void move();
 	void render();
-	void eat();
+	bool eat();
 	void die();
 	bool isCollided();
 	
@@ -66,6 +68,7 @@ public:
 	}
 	
 	static void addSnake(Snake* s) {
+		s->id = snakes.size();
 		snakes.push_back(s);
 	}
 	
