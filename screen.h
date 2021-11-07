@@ -9,6 +9,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// TODO:
+// - add wrapper classes for text, image, etc.
+// - add vectors of these wrappers to screen
+// - add interfaces to these wrappers in screen
+
 class Screen {
 private:
 	// screen dimensions
