@@ -9,6 +9,7 @@
 
 #include "direction.h"
 #include "grid.h"
+#include "screen.h"
 
 class Snake {
 	
@@ -24,6 +25,7 @@ private:
 	static std::vector<Snake*> snakes;
 	static std::vector<Snake*> toDie;
 	
+	Grid& grid;
 	// toString
 	// https://stackoverflow.com/questions/1549930/c-equivalent-of-javas-tostring
 	// friend std::ostream& operator<<(std::ostream&, const Snake&);
@@ -32,8 +34,13 @@ private:
 public:
 	const static int PLAYER_SIZE = 40;
 	const static int PLAYER_SPEED = 1;
-	Grid* grid;
-	Snake(Grid* g, int x, int y);
+	Snake(Grid& g, int x, int y);
+	
+	/**
+	renders the snake to the given screen
+	*/
+	void render(Screen& s);
+	
 	
 	/**
 	adds a turn to this snake's turn queue
@@ -47,8 +54,13 @@ public:
 	*/
 	int turn();
 	
+	/**
+	moves the snake in the direction it is currentlty facing.
+	also moves the body pieces accordingly. if the snake encounters
+	food, it eats the food and grows the body.
+	*/
 	void move();
-	void render();
+	
 	bool eat();
 	void die();
 	bool isCollided();

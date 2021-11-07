@@ -5,12 +5,13 @@
 #include "snake.h"
 #include "grid.h"
 #include "direction.h"
+#include "screen.h"
 
 std::vector<Snake*> Snake::snakes;
 std::vector<Snake*> Snake::toDie;
 
-Snake::Snake(Grid* g, int x, int y) {
-	grid = g;
+Snake::Snake(Grid& g, int x, int y) : grid(g) {
+	// grid = *g;
 	head = std::make_pair(x, y);
 	addSnake(this);
 	curDir = Direction::EAST;
@@ -35,14 +36,14 @@ int Snake::turn() {
 }
 
 bool Snake::eat() {
-	if (grid->eatFood(head.first, head.second)) {
+	if (grid.eatFood(head.first, head.second)) {
 		score++;
 		return true;
 	}
 	return false;
 }
 
-void Snake::render() {
+void Snake::render(Screen& screen) {
 	// TODO: implement
 	std::cout << head.first << " " << head.second << std::endl;
 	std::for_each(
@@ -82,8 +83,8 @@ void Snake::move() {
 	}
 	
 	// wrap head to grid
-	head.first = grid->wrapX(head.first);
-	head.second = grid->wrapY(head.second);
+	head.first = grid.wrapX(head.first);
+	head.second = grid.wrapY(head.second);
 	
 	// try to eat
 	bool growing = eat();
@@ -97,7 +98,7 @@ void Snake::move() {
 		std::pair<int, int> lastPos = body.front();
 		body.pop_front();
 		
-		grid->updateSnakeGrid(lastPos.first, lastPos.second, -1);
+		grid.updateSnakeGrid(lastPos.first, lastPos.second, -1);
 	}
 	
 	if (growing || !body.empty()) {	
@@ -106,36 +107,37 @@ void Snake::move() {
 		body.push_back(std::make_pair(prevHeadX, prevHeadY));
 	}
 	
-	grid->updateSnakeGrid(head.first, head.second, 1);
+	grid.updateSnakeGrid(head.first, head.second, 1);
 }
 
 void Snake::die() {
-	grid->updateSnakeGrid(head.first, head.second, -1);
+	grid.updateSnakeGrid(head.first, head.second, -1);
 	while (!body.empty()) {
 		std::pair<int, int> cell = body.front();
 		body.pop_front();
 		
-		grid->updateSnakeGrid(cell.first, cell.second, -1);
+		grid.updateSnakeGrid(cell.first, cell.second, -1);
 	}
 }
 
 bool Snake::isCollided() {
-	return grid->numSnakesAtPos(head.first, head.second) > 1;
+	return grid.numSnakesAtPos(head.first, head.second) > 1;
 }
 
 
 int main() {
 	
 	Grid g(4,4);
+	Screen screen(1280, 720);
 	
-	Snake s (&g, g.getWidth()/2, g.getHeight()/2);
+	Snake s (g, g.getWidth()/2, g.getHeight()/2);
 	
-	s.render();
+	s.render(screen);
 	
 	std::cout << "moving" << std::endl;
 	s.move();
 	
-	s.render();
+	s.render(screen);
 	
 	s.addTurn(Direction::NORTH);
 	
@@ -144,7 +146,7 @@ int main() {
 	
 	s.move();
 	
-	s.render();
+	s.render(screen);
 	
 	
 	
