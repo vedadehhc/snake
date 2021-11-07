@@ -8,6 +8,9 @@
 #include <string>
 #include <queue>
 
+// TESTING:
+#include "screen.h"
+
 //Screen dimension constants
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -624,6 +627,12 @@ bool handleInput(SDL_Event e) {
 }
 
 int main( int argc, char* args[] ) {
+	
+	// Testing
+	Screen screen(1280, 720);
+	screen.init();
+	
+	
 	// Strat up SDL and create window
 	if (!init()) {
 		printf("Failed to initialize\n");
