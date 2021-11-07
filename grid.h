@@ -46,8 +46,10 @@ namespace grid {
 	int wrapY(int y) {
 		return wrap(y, GRID_HEIGHT);
 	}
-
+	
+	// counts number of snake heads/bodies in this cell
 	int snakeGrid[GRID_WIDTH][GRID_HEIGHT] = {};
+	// whether there is food in this cell
 	bool foodGrid[GRID_WIDTH][GRID_HEIGHT] = {};
 };
 
