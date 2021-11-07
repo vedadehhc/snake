@@ -119,10 +119,14 @@ public:
 		// gCollect = NULL;
 		// gDeath = NULL;
 	}
-	
+
 	bool freeText() {
-		// SDL_DestroyTexture(gTextTexture);
-		// gTextTexture = NULL;
+		// if ( gTextTexture != NULL ) {
+			// SDL_DestroyTexture(gTextTexture);
+			// gTextTexture = NULL;
+			// textWidth = 0;
+			// textHeight = 0;
+		// }
 	}
 	
 	bool freeFont() {
