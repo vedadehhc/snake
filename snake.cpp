@@ -1,9 +1,11 @@
-#include "snake.h"
-#include "screen.h"
-#include "grid.h"
 #include <iostream>
 #include <utility>
 #include <algorithm>
+
+#include "snake.h"
+#include "screen.h"
+#include "grid.h"
+#include "direction.h"
 
 std::vector<Snake*> Snake::snakes;
 std::vector<Snake*> Snake::toDie;
@@ -13,26 +15,22 @@ Snake::Snake(int x, int y) {
 	addSnake(this);
 }
 
-void Snake::addTurn(int turn) {
-	// TODO: implement
+void Snake::addTurn(Direction::Direction turn) {
+	turns.push(turn);
 }
 
 int Snake::turn() {
-	// TODO: implement
-	bool moved = false;
-	if(!moves.empty()) {
-		int move = moves.front();
-		moves.pop();
+	Direction::Direction newDir = Direction::NONE;
+	if(!turns.empty()) {
+		Direction::Direction turn = turns.front();
+		turns.pop();
 		
-		if (move + curDir != TOTAL - 1) {
-			curDir = move;
+		if (!isOppositeDirection(turn, curDir) && turn != curDir) {
+			curDir = turn;
+			newDir = turn;
 		}
-		
-		moved = true;
 	}
-	return moved;
-	std::cout << "turning!" << std::endl;
-	return 0;
+	return newDir;
 }
 
 void Snake::eat() {
@@ -65,19 +63,19 @@ void Snake::move() {
 	
 	// handle move
 	switch (curDir) {
-		case EAST:
+		case Direction::EAST:
 		head.first += PLAYER_SPEED;
 		break;
 		
-		case WEST:
+		case Direction::WEST:
 		head.first -= PLAYER_SPEED;
 		break;
 		
-		case SOUTH:
+		case Direction::SOUTH:
 		head.second += PLAYER_SPEED;
 		break;
 		
-		case NORTH:
+		case Direction::NORTH:
 		head.second -= PLAYER_SPEED;
 		break;
 	}

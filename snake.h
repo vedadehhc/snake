@@ -7,17 +7,19 @@
 #include <deque>
 #include <algorithm>
 
+#include "direction.h"
+
 class Snake {
 	
 private:
 	int id;
-	int curDir;
+	Direction::Direction curDir;
 	int score;
 	
 	// these use grid coords
 	std::pair<int, int> head;
 	std::deque<std::pair<int, int>> body;
-	std::queue<int> turns;
+	std::queue<Direction::Direction> turns;
 	static std::vector<Snake*> snakes;
 	static std::vector<Snake*> toDie;
 	
@@ -31,7 +33,16 @@ public:
 	const static int PLAYER_SPEED = PLAYER_SIZE;
 	Snake(int x, int y);
 	
-	void addTurn(int turn);
+	/**
+	adds a turn to this snake's turn queue
+	*/
+	void addTurn(Direction::Direction turn);
+	
+	/**
+	attempts to turn using the next turn in the turn queue.
+	if a turn is executed, return the new direction.
+	otherwise, return direction None
+	*/
 	int turn();
 	
 	void move();
@@ -60,22 +71,4 @@ public:
 	
 	int getId() { return id; }
 };
-
-enum Direction {
-	NONE,
-	EAST,
-	SOUTH,
-	NORTH,
-	WEST,
-	TOTAL
-};
-
-int opposite(Direction dir) {
-	return Direction::TOTAL - dir;
-}
-
-bool isOpposite(Direction a, Direction b) {
-	return a != Direction::NONE && b != Direction::NONE && a + b == Direction::TOTAL;
-}
-
 #endif
