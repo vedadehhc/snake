@@ -1,5 +1,7 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#ifndef GAME_H
+#define GAME_H
+
+#include <iostream>
 
 #include "screen.h"
 #include "grid.h"
@@ -9,10 +11,10 @@ private:
 	// how big each cell is, in screen units
 	int cellSize;
 	
-	Screen screen;
-	Grid grid;
 	
 public:
+	Screen screen;
+	Grid grid;
 	Game() : screen(1280, 720), grid(32, 18) {
 		
 		// computed using grid width/height and screen size for compatability
