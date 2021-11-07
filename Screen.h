@@ -111,6 +111,57 @@ public:
 		
 		return success;
 	}
+	
+	bool freeSfx() {
+		
+		// Mix_FreeChunk(gCollect);
+		// Mix_FreeChunk(gDeath);
+		// gCollect = NULL;
+		// gDeath = NULL;
+	}
+	
+	bool freeText() {
+		// SDL_DestroyTexture(gTextTexture);
+		// gTextTexture = NULL;
+	}
+	
+	bool freeFont() {
+		// TTF_CloseFont(gFont);
+		// gFont = NULL;
+	}
+	
+	bool freeWindow() {
+		// SDL_DestroyRenderer(gRenderer);
+		// SDL_DestroyWindow( gWindow );
+		// gRenderer = NULL;
+		// gWindow = NULL;
+	}
+	
+	// Frees media and closes SDL
+	bool close() {
+		
+		FILE* datafile;
+		datafile = fopen("data.txt", "w");
+		fprintf(datafile, "%d", highscore);
+		fclose(datafile);
+		
+		// free sfx
+		freeSfx();
+		
+		// Deallocate text
+		freeText();
+		
+		// free font
+		freeFont();
+		
+		//Destroy window
+		freeWindow();
+
+		//Quit SDL subsystems
+		Mix_Quit();
+		IMG_Quit();
+		SDL_Quit();
+	}
 
 	
 	// getters
