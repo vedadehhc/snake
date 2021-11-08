@@ -10,7 +10,12 @@ class TextBox {
 private:
 	int width, height;
 	std::string text;
+	
+	// texture used to render on screen
 	SDL_Texture* gTextTexture = NULL;
+	
+	// Roboto font
+	TTF_Font* gFont = NULL;
 	
 public:
 	TextBox(std::string s) : text(s) {
