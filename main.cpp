@@ -155,7 +155,7 @@ bool close() {
 	
 
 	//Quit SDL subsystems
-	Mix_Quit();
+	Mix_Quit();	
 	IMG_Quit();
 	SDL_Quit();
 }
@@ -629,8 +629,8 @@ bool handleInput(SDL_Event e) {
 int main( int argc, char* args[] ) {
 	
 	// Testing
-	Screen screen(1280, 720);
-	screen.init();
+	// Screen screen(1280, 720);
+	// screen.init();
 	
 	
 	// Strat up SDL and create window

@@ -14,7 +14,10 @@ private:
 	// texture used to render on screen
 	SDL_Texture* gTextTexture = NULL;
 	
-	// Roboto font
+	// text color
+	SDL_Color color = { 0xFF, 0, 0, 0xFF };
+	
+	// font
 	TTF_Font* gFont = NULL;
 	
 public:
@@ -22,8 +25,13 @@ public:
 		
 	}
 	
-	bool free() {
-		
+	bool free() {		
+		if ( gTextTexture != NULL ) {
+			SDL_DestroyTexture(gTextTexture);
+			gTextTexture = NULL;
+			width = 0;
+			height = 0;
+		}
 	}
 	
 	
